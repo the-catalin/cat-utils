@@ -1,0 +1,34 @@
+<script>
+
+// functions to check if an element is in the viewport
+
+function isElementInViewport(el, offset) {
+    var rect = el.getBoundingClientRect();
+    offset = offset ? offset : 0;
+    return (
+        rect.top >= -offset &&
+        rect.left >= -offset &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) +offset &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth) + offset
+    );
+}
+
+function onVisibleOnce(el, callback, scope, offset) {
+    var visibilityCheck = function() {
+        if (isElementInViewport(el, offset)) {
+            callback.call(scope);
+            removeEventListener('DOMContentLoaded', visibilityCheck, false); 
+            removeEventListener('load', visibilityCheck, false); 
+            removeEventListener('scroll', visibilityCheck, false); 
+            removeEventListener('resize', visibilityCheck, false);
+        }
+    };
+
+    addEventListener('DOMContentLoaded', visibilityCheck, false); 
+    addEventListener('load', visibilityCheck, false); 
+    addEventListener('scroll', visibilityCheck, false); 
+    addEventListener('resize', visibilityCheck, false);
+
+    visibilityCheck();
+}
+</script>
