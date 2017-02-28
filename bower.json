@@ -1,15 +1,14 @@
 {
   "name": "cat-utils",
   "version": "0.8.0",
-  "description": "Utility files for cat-components",
+  "description": "Utility files used in cat-components",
   "authors": [
     "Catalin Ungureanu <catalinungureanu@gmail.com>"
   ],
   "keywords": [
     "web-components",
     "polymer",
-    "text",
-    "effect"
+    "utils"
   ],
   "main": "index.html",
   "license": "MIT",
